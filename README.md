@@ -1,4 +1,4 @@
-*remove-github-followers
+**remove-github-followers
 
 Script that checks if you have github followers, then momentarily blocks/unblocks to remove them as followers.  
 
