@@ -16,14 +16,14 @@ https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/c
 ## for periodic run with user-level systemd service
     cd systemd-userlevel
     ./create-github-userservice.sh
-    vi ~/default/githubservice
+    vi ~/default/github
     
-    tail -f ~/log/githubservice/*
+    tail -f ~/log/github/*
     
     
 ## for periodic run with system-level systemd service
     cd systemd-systemlevel
     ./create-github-service.sh
-    vi /etc/default/githubservice
+    vi /etc/default/github
     
-    tail -f /var/log/githubservice/github.log
+    tail -f /var/log/github/github.log

@@ -19,22 +19,22 @@ scriptdir=$(realpath ..)
 [ -f "$scriptdir/remove-github-followers.sh" ] || { echo "ERROR did not find script: $scriptdir/remove-github-followers.sh"; exit 3; }
 
 # create custom systemd service file
-sed "s#\$scriptdir#${scriptdir}#g" github.service | sudo tee /lib/systemd/system/github.service >/dev/null
-sudo chmod 655 /lib/systemd/system/github.service
-echo "created systemd service file: /lib/systemd/system/github.service"
+sed "s#\$scriptdir#${scriptdir}#g" $service.service | sudo tee /lib/systemd/system/$service.service >/dev/null
+sudo chmod 655 /lib/systemd/system/$service.service
+echo "created systemd service file: /lib/systemd/system/$service.service"
 
 # create custom systemd timer file
-sudo cp github.timer /lib/systemd/system/.
-sudo chmod 655 /lib/systemd/system/github.timer
+sudo cp $service.timer /lib/systemd/system/.
+sudo chmod 655 /lib/systemd/system/$service.timer
 
 echo "reloading systemctl..."
 sudo systemctl daemon-reload
 
 # create custom environment configuration where github personal access token is set
-if [ ! -f /etc/default/githubservice ]; then
-  echo "github_pat=" | sudo tee /etc/default/githubservice
+if [ ! -f /etc/default/github ]; then
+  echo "github_pat=" | sudo tee /etc/default/github
 fi
-sudo chmod 600 /etc/default/githubservice
+sudo chmod 600 /etc/default/github
 
 echo "configuring syslog"
 if [ -d /etc/rsyslog.d ]; then
@@ -53,11 +53,11 @@ sudo systemctl start $service.timer
 
 echo "==========================="
 echo "list of $service services available..."
-sudo systemctl --no-pager | grep github
+sudo systemctl --no-pager | grep $service
 
 echo "==========================="
 echo "list of timers for $service available..."
-sudo systemctl list-timers --no-pager | grep github
+sudo systemctl list-timers --no-pager | grep $service
 
 echo ""
 echo "==========================="

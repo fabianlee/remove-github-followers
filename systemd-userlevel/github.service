@@ -9,18 +9,17 @@ Type=forking
 #Group=
 
 # define 'github_pat' env var, secured by root ownership and mode 600
-EnvironmentFile=-$userdir/default/githubservice
+EnvironmentFile=-$userdir/default/github
 
 WorkingDirectory=$scriptdir
 ExecStart=$scriptdir/remove-github-followers.sh
 
 # make sure log directory exists and owned by syslog
 PermissionsStartOnly=true
-ExecStartPre=/bin/mkdir -p $userdir/log/githubservice
+ExecStartPre=/bin/mkdir -p $userdir/log/github
 ExecStartPre=/bin/chmod -R 755 $userdir/log
-StandardOutput=append:$userdir/log/githubservice/github.log
-StandardError=append:$userdir/log/githubservice/github.err
-SyslogIdentifier=githubservice
+StandardOutput=append:$userdir/log/github/github.log
+StandardError=append:$userdir/log/github/github.err
  
 [Install]
 WantedBy=default.target
