@@ -1,0 +1,28 @@
+[Unit]
+Description=Remove github followers
+ConditionPathExists=$scriptdir/remove-github-followers.sh
+After=network.target
+ 
+[Service]
+#Type=simple
+Type=forking
+User=githubservice
+Group=githubservice
+
+# define 'github_pat' env var, secured by root ownership and mode 600
+EnvironmentFile=-/etc/default/githubservice
+
+WorkingDirectory=$scriptdir
+ExecStart=$scriptdir/remove-github-followers.sh
+
+# make sure log directory exists and owned by syslog
+PermissionsStartOnly=true
+ExecStartPre=/bin/mkdir -p /var/log/githubservice
+ExecStartPre=/bin/chown syslog:adm /var/log/githubservice
+ExecStartPre=/bin/chmod 755 /var/log/githubservice
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=githubservice
+ 
+[Install]
+WantedBy=multi-user.target
