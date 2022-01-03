@@ -9,7 +9,7 @@ service=github
 echo $XDG_RUNTIME_DIR
 echo $DBUS_SESSION_BUS_ADDRESS
 
-systemctl --user status2 >/dev/null 2>&1
+systemctl --user status >/dev/null 2>&1
 [ $? -eq 0 ] || { echo "ERROR running systemctl as non-root user.  Need 'systemctl --user status' to run correctly before running this script."; exit 1; }
 
 userdir=$(realpath ~)
