@@ -39,7 +39,7 @@ mkdir -p $userdir/log/$service
 chmod -R 755 $userdir/log
 
 # create custom environment configuration where github personal access token is set
-if [ ! -f ~/default/githubservice ]; then
+if [ ! -f ~/default/github ]; then
   mkdir -p ~/default
   echo "github_pat=" | tee ~/default/$service
 fi

@@ -3,7 +3,6 @@
 # deletes systemd service that removes followers from github account
 #
 
-user=$(id -un)
 service=github
 
 echo "stopping service $service"
