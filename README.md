@@ -1,8 +1,11 @@
 # remove-github-followers
 
-Script that checks if you have github followers, then temporarily blocks/unblocks to remove them as followers.  
+Script that checks if you have github followers, then temporarily blocks/unblocks which removes them as followers.  
 
-Accesses the github api using a github personal access token.
+Unfortunately, there is not an option to block followers.
+https://stackoverflow.com/questions/31313863/how-to-delete-my-follower-at-github
+
+This script uses a github personal access token for api authentication.
 https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 
 ## for one-time run
