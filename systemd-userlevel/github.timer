@@ -2,4 +2,8 @@
 Description=Timer for periodically removing github followers at user level
 
 [Timer]
-OnUnitActiveSec=60
+# every 60 seconds
+#OnUnitActiveSec=60
+# everyday midnight
+# https://silentlad.com/systemd-timers-oncalendar-(cron)-format-explained
+OnCalendar=*-*-* 00:00:00
