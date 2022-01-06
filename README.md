@@ -1,5 +1,7 @@
 # remove-github-followers
 
+blog: https://fabianlee.org/2022/01/06/github-removing-followers-with-the-github-api/
+
 Script that checks if you have github followers, then temporarily blocks/unblocks which removes them as followers.  
 
 Unfortunately, there is not an option to block followers.
