@@ -9,6 +9,8 @@ service=github
 echo $XDG_RUNTIME_DIR
 echo $DBUS_SESSION_BUS_ADDRESS
 
+[ -n "$github_pat" ] || { echo "ERROR define 'github_pat' as environment variable"; exit 3; }
+
 systemctl --user status >/dev/null 2>&1
 [ $? -eq 0 ] || { echo "ERROR running systemctl as non-root user.  Need 'systemctl --user status' to run correctly before running this script."; exit 1; }
 
@@ -41,7 +43,7 @@ chmod -R 755 $userdir/log
 # create custom environment configuration where github personal access token is set
 if [ ! -f ~/default/github ]; then
   mkdir -p ~/default
-  echo "github_pat=" | tee ~/default/$service
+  echo "github_pat=$github_pat" | tee ~/default/$service
 fi
 chmod 600 ~/default/$service
 

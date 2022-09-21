@@ -13,6 +13,7 @@ else
   sudo useradd $user -s /sbin/nologin -M
 fi
 
+[ -n "$github_pat" ] || { echo "ERROR define 'github_pat' as environment variable"; exit 3; }
 
 # path to bash script that will be executed
 scriptdir=$(realpath ..)
@@ -32,7 +33,7 @@ sudo systemctl daemon-reload
 
 # create custom environment configuration where github personal access token is set
 if [ ! -f /etc/default/github ]; then
-  echo "github_pat=" | sudo tee /etc/default/github
+  echo "github_pat=$github_pat" | sudo tee /etc/default/github
 fi
 sudo chmod 600 /etc/default/github
 
